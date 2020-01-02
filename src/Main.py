@@ -64,7 +64,7 @@ while True:
             print("Fees Remaining! Complete it to write exam paper.")
 
     if a == 4:
-        d = input("Enter roll no.: ")
+        d = int(input("Enter roll no.: "))
         sql_statement = "select fees from Student where RollNo=%s"
         sf = (d,)
         db_connection.cur.execute(sql_statement, sf)
