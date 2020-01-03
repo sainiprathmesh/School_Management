@@ -1,8 +1,7 @@
-
 while True:
-    from src.Database_Helper import insertStudent, deleteStudent, updateStudent, viewStudent, insertEmployee, \
+    from src.Database_Helper import insert_student, deleteStudent, updateStudent, view_student_details, insertEmployee, \
         deleteEmployee, updateEmployee, viewEmployee
-    from src.Db_connection import db_connection
+    from src.DatabaseConnection import DatabaseConnection
     print("_______________________________SCHOOL MANAGEMENT SYSTEM_______________________________")
     print("1.Student\n2.Employee\n3.Exam\n4.Fees")
     a = int(input("Enter Your Choice: "))
@@ -14,7 +13,7 @@ while True:
             sclass = int(input("enter Class: "))
             saddress = input("Enter Address: ")
             sfee = int(input("Enter amount of fees deposited: "))
-            insertStudent(sclass, saddress, srno, sfee)
+            insert_student(sclass, saddress, srno, sfee)
         elif b == 2:
             srno = input("Enter Roll No. of student you want to delete: ")
             deleteStudent(srno)
@@ -26,7 +25,7 @@ while True:
             updateStudent(sclass, saddress, srno, sfee, )
         elif b == 4:
             srno = input("1.Enter Roll No.: ")
-            viewStudent(srno)
+            view_student_details(srno)
         else:
             pass
 
@@ -56,8 +55,8 @@ while True:
         d = input("Enter roll no.: ")
         sql_statement = "select fees from Student where RollNo=%s"
         sf = (d,)
-        db_connection.cur.execute(sql_statement, sf)
-        output = db_connection.cur.fetchone()
+        DatabaseConnection.cur.execute(sql_statement, sf)
+        output = DatabaseConnection.cur.fetchone()
         if output[0] >= 10000:
             print("Eligible for exam!!!!")
         else:
@@ -67,8 +66,8 @@ while True:
         d = int(input("Enter roll no.: "))
         sql_statement = "select fees from Student where RollNo=%s"
         sf = (d,)
-        db_connection.cur.execute(sql_statement, sf)
-        output = db_connection.cur.fetchone()
+        DatabaseConnection.cur.execute(sql_statement, sf)
+        output = DatabaseConnection.cur.fetchone()
         if output[0] >= 10000:
             print("Completely Deposited!!!")
         else:
